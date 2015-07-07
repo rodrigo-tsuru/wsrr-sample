@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="ConsultaCPF" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="ConsultaCPF" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WebServices para Consultas a &lt;strong&gt;SERASA&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;Para utilizacao deste servico e necessario abrir uma conta no &lt;a href='http://www.consultacpf.com' target='_blank'&gt;http://www.consultacpf.com&lt;/a&gt;&lt;br /&gt;Para maiores informacoes sobre precos e integradores entre em &lt;a href='http://www.consultacpf.com/contato.aspx' target='_blank'&gt;contato&lt;/a&gt; com nosso departamento Comercial ou Tecnico&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h3&gt;&lt;font color='#ff0000'&gt;ATENCAO, este ambiente é de PRODUCAO!&lt;/font&gt;&lt;/h3&gt;&lt;h3&gt;Consultas realizadas aqui serao descontadas de seu saldo.&lt;/h3&gt;&lt;br /&gt;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="ConsultaCPF">
+      <s:element name="ConsultaSaldoCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaSaldoClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaSaldoClienteResult" type="tns:Cliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Cliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultaHistorico">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DataInicio" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="DataTermino" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaHistoricoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaHistoricoResult" type="tns:Historicos" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Historicos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalConsultas" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Historico">
+            <s:complexType>
+              <s:sequence>
+                <s:element ref="s:schema" />
+                <s:any />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultaHistoricoPorToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaHistoricoPorTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaHistoricoPorTokenResult" type="tns:Historico" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Historico">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Via" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Consulta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataHora" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValorDebitado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultaSinteseCadastralSERASA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaSinteseCadastralSERASAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaSinteseCadastralSERASAResult" type="tns:SinteseCadastral" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SinteseCadastral">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NomeMae" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DataNasc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SituacaoDocumento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Serialization" />
+      <s:element name="ConsultaSimplesSERASA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaSimplesSERASAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaSimplesSERASAResult" type="tns:SERASAConsultaSimples" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SERASAConsultaSimples">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NomeMae" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DataNasc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SituacaoDocumento" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalOcorrencias" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ConsultaDetalhadaSERASA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaDetalhadaSERASAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaDetalhadaSERASAResult" type="tns:SERASAConsultaDetalhada" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SERASAConsultaDetalhada">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NomeMae" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DataNasc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SituacaoDocumento" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalOcorrencias" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Pendencias">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ConsultaDetalhadaPlusSERASA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaDetalhadaPlusSERASAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaDetalhadaPlusSERASAResult" type="tns:SERASAConsultaDetalhadaPlus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SERASAConsultaDetalhadaPlus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NomeMae" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DataNasc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SituacaoDocumento" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalOcorrencias" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Pendencias">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ConsultaConcentreSERASA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaConcentreSERASAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaConcentreSERASAResult" type="tns:SERASAConsultaConcentre" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SERASAConsultaConcentre">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NomeMae" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DataNasc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SituacaoDocumento" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalOcorrencias" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Pendencias">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ConsultaChequeSERASA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Banco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Agencia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ContaCorrente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ChequeInicial" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ChequeInicialDigito" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaChequeSERASAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaChequeSERASAResult" type="tns:SERASAConsultaCheques" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SERASAConsultaCheques">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NomeMae" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DataNasc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SituacaoDocumento" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TotalOcorrencias" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Banco" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Agencia" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContaCorrente" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ChequeInicial" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ChequeInicialDigito" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Pendencias">
+                <s:complexType>
+                  <s:sequence>
+                    <s:element ref="s:schema" />
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ConsultaTelefoneEnderecoSERASA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EMail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telefone" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaTelefoneEnderecoSERASAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaTelefoneEnderecoSERASAResult" type="tns:SERASAConsultaTelefoneEndereco" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SERASAConsultaTelefoneEndereco">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Telefone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Endereco" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Bairro" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Cidade" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CEP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Cliente" nillable="true" type="tns:Cliente" />
+      <s:element name="Historicos" nillable="true" type="tns:Historicos" />
+      <s:element name="Historico" nillable="true" type="tns:Historico" />
+      <s:element name="SinteseCadastral" nillable="true" type="tns:SinteseCadastral" />
+      <s:element name="SERASAConsultaSimples" nillable="true" type="tns:SERASAConsultaSimples" />
+      <s:element name="SERASAConsultaDetalhada" nillable="true" type="tns:SERASAConsultaDetalhada" />
+      <s:element name="SERASAConsultaDetalhadaPlus" nillable="true" type="tns:SERASAConsultaDetalhadaPlus" />
+      <s:element name="SERASAConsultaConcentre" nillable="true" type="tns:SERASAConsultaConcentre" />
+      <s:element name="SERASAConsultaCheques" nillable="true" type="tns:SERASAConsultaCheques" />
+      <s:element name="SERASAConsultaTelefoneEndereco" nillable="true" type="tns:SERASAConsultaTelefoneEndereco" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultaSaldoClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaSaldoCliente" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSaldoClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaSaldoClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaHistorico" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaHistoricoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoPorTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaHistoricoPorToken" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoPorTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaHistoricoPorTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSinteseCadastralSERASASoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaSinteseCadastralSERASA" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSinteseCadastralSERASASoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaSinteseCadastralSERASAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSimplesSERASASoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaSimplesSERASA" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSimplesSERASASoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaSimplesSERASAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaSERASASoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaDetalhadaSERASA" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaSERASASoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaDetalhadaSERASAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaPlusSERASASoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaDetalhadaPlusSERASA" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaPlusSERASASoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaDetalhadaPlusSERASAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaConcentreSERASASoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaConcentreSERASA" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaConcentreSERASASoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaConcentreSERASAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaChequeSERASASoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaChequeSERASA" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaChequeSERASASoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaChequeSERASAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefoneEnderecoSERASASoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaTelefoneEnderecoSERASA" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefoneEnderecoSERASASoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaTelefoneEnderecoSERASAResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSaldoClienteHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSaldoClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:Cliente" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="DataInicio" type="s:string" />
+    <wsdl:part name="DataTermino" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoHttpGetOut">
+    <wsdl:part name="Body" element="tns:Historicos" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoPorTokenHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Token" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoPorTokenHttpGetOut">
+    <wsdl:part name="Body" element="tns:Historico" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSinteseCadastralSERASAHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSinteseCadastralSERASAHttpGetOut">
+    <wsdl:part name="Body" element="tns:SinteseCadastral" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSimplesSERASAHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSimplesSERASAHttpGetOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaSimples" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaSERASAHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaSERASAHttpGetOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaDetalhada" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaPlusSERASAHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+    <wsdl:part name="Estado" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaPlusSERASAHttpGetOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaDetalhadaPlus" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaConcentreSERASAHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaConcentreSERASAHttpGetOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaConcentre" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaChequeSERASAHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+    <wsdl:part name="Banco" type="s:string" />
+    <wsdl:part name="Agencia" type="s:string" />
+    <wsdl:part name="ContaCorrente" type="s:string" />
+    <wsdl:part name="ChequeInicial" type="s:string" />
+    <wsdl:part name="ChequeInicialDigito" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaChequeSERASAHttpGetOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaCheques" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefoneEnderecoSERASAHttpGetIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Telefone" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefoneEnderecoSERASAHttpGetOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaTelefoneEndereco" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSaldoClienteHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSaldoClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:Cliente" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="DataInicio" type="s:string" />
+    <wsdl:part name="DataTermino" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoHttpPostOut">
+    <wsdl:part name="Body" element="tns:Historicos" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoPorTokenHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Token" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaHistoricoPorTokenHttpPostOut">
+    <wsdl:part name="Body" element="tns:Historico" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSinteseCadastralSERASAHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSinteseCadastralSERASAHttpPostOut">
+    <wsdl:part name="Body" element="tns:SinteseCadastral" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSimplesSERASAHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaSimplesSERASAHttpPostOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaSimples" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaSERASAHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaSERASAHttpPostOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaDetalhada" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaPlusSERASAHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+    <wsdl:part name="Estado" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaDetalhadaPlusSERASAHttpPostOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaDetalhadaPlus" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaConcentreSERASAHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaConcentreSERASAHttpPostOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaConcentre" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaChequeSERASAHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Documento" type="s:string" />
+    <wsdl:part name="Banco" type="s:string" />
+    <wsdl:part name="Agencia" type="s:string" />
+    <wsdl:part name="ContaCorrente" type="s:string" />
+    <wsdl:part name="ChequeInicial" type="s:string" />
+    <wsdl:part name="ChequeInicialDigito" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaChequeSERASAHttpPostOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaCheques" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefoneEnderecoSERASAHttpPostIn">
+    <wsdl:part name="EMail" type="s:string" />
+    <wsdl:part name="Senha" type="s:string" />
+    <wsdl:part name="Telefone" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefoneEnderecoSERASAHttpPostOut">
+    <wsdl:part name="Body" element="tns:SERASAConsultaTelefoneEndereco" />
+  </wsdl:message>
+  <wsdl:portType name="ConsultaCPFWebServiceSoap">
+    <wsdl:operation name="ConsultaSaldoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Saldo de Cliente&lt;br /&gt;Retorna Saldo atual de um cliente&lt;br /&gt;Não existe custo para esta consulta.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSaldoClienteSoapIn" />
+      <wsdl:output message="tns:ConsultaSaldoClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistorico">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Historico de Consultas&lt;br /&gt;Retorna todas as consultas realizadas&lt;br /&gt;Não existe custo para esta consulta.&lt;br /&gt;Formato para as Datas: AAAA/MM/DD</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaHistoricoSoapIn" />
+      <wsdl:output message="tns:ConsultaHistoricoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistoricoPorToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Historico de Consulta&lt;br /&gt;Retorna uma unica consulta realizada&lt;br /&gt;Não existe custo para esta consulta.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaHistoricoPorTokenSoapIn" />
+      <wsdl:output message="tns:ConsultaHistoricoPorTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSinteseCadastralSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sintese Cadastral SERASA&lt;br /&gt;Retorna Nome/Razao Social, Nome da Mae (no caso de pessoa física), Data Nascimento/Fundacao&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSinteseCadastralSERASASoapIn" />
+      <wsdl:output message="tns:ConsultaSinteseCadastralSERASASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSimplesSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Simplificada ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrencias&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSimplesSERASASoapIn" />
+      <wsdl:output message="tns:ConsultaSimplesSERASASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Detalhada ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Pendências Financeiras&lt;br /&gt;Pendências Varejo&lt;br /&gt;Pendências BACEN&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaDetalhadaSERASASoapIn" />
+      <wsdl:output message="tns:ConsultaDetalhadaSERASASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaPlusSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Detalhada Plus ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Pendências Financeiras&lt;br /&gt;Pendências Varejo&lt;br /&gt;Pendências BACEN&lt;br /&gt;Pendências de Cartorios&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaDetalhadaPlusSERASASoapIn" />
+      <wsdl:output message="tns:ConsultaDetalhadaPlusSERASASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaConcentreSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ CONCENTRE SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Protestos&lt;br /&gt;Acoes Judiciais&lt;br /&gt;Falencias e Concordatas&lt;br /&gt;Participacoes em Empresas com Falencia ou Concordata&lt;br /&gt;Restricoes Financeiras&lt;br /&gt;Achei-Recheque&lt;br /&gt;Pendências BACEN&lt;br /&gt;CONVEM Devedores&lt;br /&gt;Alertas SERASA&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaConcentreSERASASoapIn" />
+      <wsdl:output message="tns:ConsultaConcentreSERASASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaChequeSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Cheques por CPF/CNPJ&lt;br /&gt;Retorna se o Cheque informado possui restricoes.&lt;br /&gt;Informa se consta no banco de dados como sustado, cancelado, roubado ou extraviado.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaChequeSERASASoapIn" />
+      <wsdl:output message="tns:ConsultaChequeSERASASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefoneEnderecoSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Endereco por Telefone SERASA&lt;br /&gt;Retorna Endereco, Bairro, Cidade e CEP&lt;br /&gt;&lt;strong&gt;ATENÇÃO!!&lt;/strong&gt;&lt;br /&gt;Esta consulta sempre será tarifada.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaTelefoneEnderecoSERASASoapIn" />
+      <wsdl:output message="tns:ConsultaTelefoneEnderecoSERASASoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConsultaCPFWebServiceHttpGet">
+    <wsdl:operation name="ConsultaSaldoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Saldo de Cliente&lt;br /&gt;Retorna Saldo atual de um cliente&lt;br /&gt;Não existe custo para esta consulta.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSaldoClienteHttpGetIn" />
+      <wsdl:output message="tns:ConsultaSaldoClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistorico">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Historico de Consultas&lt;br /&gt;Retorna todas as consultas realizadas&lt;br /&gt;Não existe custo para esta consulta.&lt;br /&gt;Formato para as Datas: AAAA/MM/DD</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaHistoricoHttpGetIn" />
+      <wsdl:output message="tns:ConsultaHistoricoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistoricoPorToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Historico de Consulta&lt;br /&gt;Retorna uma unica consulta realizada&lt;br /&gt;Não existe custo para esta consulta.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaHistoricoPorTokenHttpGetIn" />
+      <wsdl:output message="tns:ConsultaHistoricoPorTokenHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSinteseCadastralSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sintese Cadastral SERASA&lt;br /&gt;Retorna Nome/Razao Social, Nome da Mae (no caso de pessoa física), Data Nascimento/Fundacao&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSinteseCadastralSERASAHttpGetIn" />
+      <wsdl:output message="tns:ConsultaSinteseCadastralSERASAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSimplesSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Simplificada ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrencias&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSimplesSERASAHttpGetIn" />
+      <wsdl:output message="tns:ConsultaSimplesSERASAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Detalhada ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Pendências Financeiras&lt;br /&gt;Pendências Varejo&lt;br /&gt;Pendências BACEN&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaDetalhadaSERASAHttpGetIn" />
+      <wsdl:output message="tns:ConsultaDetalhadaSERASAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaPlusSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Detalhada Plus ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Pendências Financeiras&lt;br /&gt;Pendências Varejo&lt;br /&gt;Pendências BACEN&lt;br /&gt;Pendências de Cartorios&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaDetalhadaPlusSERASAHttpGetIn" />
+      <wsdl:output message="tns:ConsultaDetalhadaPlusSERASAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaConcentreSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ CONCENTRE SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Protestos&lt;br /&gt;Acoes Judiciais&lt;br /&gt;Falencias e Concordatas&lt;br /&gt;Participacoes em Empresas com Falencia ou Concordata&lt;br /&gt;Restricoes Financeiras&lt;br /&gt;Achei-Recheque&lt;br /&gt;Pendências BACEN&lt;br /&gt;CONVEM Devedores&lt;br /&gt;Alertas SERASA&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaConcentreSERASAHttpGetIn" />
+      <wsdl:output message="tns:ConsultaConcentreSERASAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaChequeSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Cheques por CPF/CNPJ&lt;br /&gt;Retorna se o Cheque informado possui restricoes.&lt;br /&gt;Informa se consta no banco de dados como sustado, cancelado, roubado ou extraviado.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaChequeSERASAHttpGetIn" />
+      <wsdl:output message="tns:ConsultaChequeSERASAHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefoneEnderecoSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Endereco por Telefone SERASA&lt;br /&gt;Retorna Endereco, Bairro, Cidade e CEP&lt;br /&gt;&lt;strong&gt;ATENÇÃO!!&lt;/strong&gt;&lt;br /&gt;Esta consulta sempre será tarifada.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaTelefoneEnderecoSERASAHttpGetIn" />
+      <wsdl:output message="tns:ConsultaTelefoneEnderecoSERASAHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConsultaCPFWebServiceHttpPost">
+    <wsdl:operation name="ConsultaSaldoCliente">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Saldo de Cliente&lt;br /&gt;Retorna Saldo atual de um cliente&lt;br /&gt;Não existe custo para esta consulta.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSaldoClienteHttpPostIn" />
+      <wsdl:output message="tns:ConsultaSaldoClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistorico">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Historico de Consultas&lt;br /&gt;Retorna todas as consultas realizadas&lt;br /&gt;Não existe custo para esta consulta.&lt;br /&gt;Formato para as Datas: AAAA/MM/DD</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaHistoricoHttpPostIn" />
+      <wsdl:output message="tns:ConsultaHistoricoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistoricoPorToken">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Historico de Consulta&lt;br /&gt;Retorna uma unica consulta realizada&lt;br /&gt;Não existe custo para esta consulta.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaHistoricoPorTokenHttpPostIn" />
+      <wsdl:output message="tns:ConsultaHistoricoPorTokenHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSinteseCadastralSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sintese Cadastral SERASA&lt;br /&gt;Retorna Nome/Razao Social, Nome da Mae (no caso de pessoa física), Data Nascimento/Fundacao&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSinteseCadastralSERASAHttpPostIn" />
+      <wsdl:output message="tns:ConsultaSinteseCadastralSERASAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSimplesSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Simplificada ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrencias&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaSimplesSERASAHttpPostIn" />
+      <wsdl:output message="tns:ConsultaSimplesSERASAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Detalhada ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Pendências Financeiras&lt;br /&gt;Pendências Varejo&lt;br /&gt;Pendências BACEN&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaDetalhadaSERASAHttpPostIn" />
+      <wsdl:output message="tns:ConsultaDetalhadaSERASAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaPlusSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ Detalhada Plus ao SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Pendências Financeiras&lt;br /&gt;Pendências Varejo&lt;br /&gt;Pendências BACEN&lt;br /&gt;Pendências de Cartorios&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaDetalhadaPlusSERASAHttpPostIn" />
+      <wsdl:output message="tns:ConsultaDetalhadaPlusSERASAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaConcentreSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta CPF/CNPJ CONCENTRE SERASA&lt;br /&gt;Retorna &lt;strong&gt;NADA CONSTA&lt;/strong&gt; ou &lt;strong&gt;COM RESTRICOES&lt;/strong&gt;&lt;br /&gt;Situacao do Documento&lt;br /&gt;Numero de Ocorrências&lt;br /&gt;Protestos&lt;br /&gt;Acoes Judiciais&lt;br /&gt;Falencias e Concordatas&lt;br /&gt;Participacoes em Empresas com Falencia ou Concordata&lt;br /&gt;Restricoes Financeiras&lt;br /&gt;Achei-Recheque&lt;br /&gt;Pendências BACEN&lt;br /&gt;CONVEM Devedores&lt;br /&gt;Alertas SERASA&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaConcentreSERASAHttpPostIn" />
+      <wsdl:output message="tns:ConsultaConcentreSERASAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaChequeSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Cheques por CPF/CNPJ&lt;br /&gt;Retorna se o Cheque informado possui restricoes.&lt;br /&gt;Informa se consta no banco de dados como sustado, cancelado, roubado ou extraviado.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaChequeSERASAHttpPostIn" />
+      <wsdl:output message="tns:ConsultaChequeSERASAHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefoneEnderecoSERASA">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Endereco por Telefone SERASA&lt;br /&gt;Retorna Endereco, Bairro, Cidade e CEP&lt;br /&gt;&lt;strong&gt;ATENÇÃO!!&lt;/strong&gt;&lt;br /&gt;Esta consulta sempre será tarifada.</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaTelefoneEnderecoSERASAHttpPostIn" />
+      <wsdl:output message="tns:ConsultaTelefoneEnderecoSERASAHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultaCPFWebServiceSoap" type="tns:ConsultaCPFWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaSaldoCliente">
+      <soap:operation soapAction="ConsultaCPF/ConsultaSaldoCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistorico">
+      <soap:operation soapAction="ConsultaCPF/ConsultaHistorico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistoricoPorToken">
+      <soap:operation soapAction="ConsultaCPF/ConsultaHistoricoPorToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSinteseCadastralSERASA">
+      <soap:operation soapAction="ConsultaCPF/ConsultaSinteseCadastralSERASA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSimplesSERASA">
+      <soap:operation soapAction="ConsultaCPF/ConsultaSimplesSERASA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaSERASA">
+      <soap:operation soapAction="ConsultaCPF/ConsultaDetalhadaSERASA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaPlusSERASA">
+      <soap:operation soapAction="ConsultaCPF/ConsultaDetalhadaPlusSERASA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaConcentreSERASA">
+      <soap:operation soapAction="ConsultaCPF/ConsultaConcentreSERASA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaChequeSERASA">
+      <soap:operation soapAction="ConsultaCPF/ConsultaChequeSERASA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefoneEnderecoSERASA">
+      <soap:operation soapAction="ConsultaCPF/ConsultaTelefoneEnderecoSERASA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaCPFWebServiceSoap12" type="tns:ConsultaCPFWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaSaldoCliente">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaSaldoCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistorico">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaHistorico" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistoricoPorToken">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaHistoricoPorToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSinteseCadastralSERASA">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaSinteseCadastralSERASA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSimplesSERASA">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaSimplesSERASA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaSERASA">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaDetalhadaSERASA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaPlusSERASA">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaDetalhadaPlusSERASA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaConcentreSERASA">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaConcentreSERASA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaChequeSERASA">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaChequeSERASA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefoneEnderecoSERASA">
+      <soap12:operation soapAction="ConsultaCPF/ConsultaTelefoneEnderecoSERASA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaCPFWebServiceHttpGet" type="tns:ConsultaCPFWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ConsultaSaldoCliente">
+      <http:operation location="/ConsultaSaldoCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistorico">
+      <http:operation location="/ConsultaHistorico" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistoricoPorToken">
+      <http:operation location="/ConsultaHistoricoPorToken" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSinteseCadastralSERASA">
+      <http:operation location="/ConsultaSinteseCadastralSERASA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSimplesSERASA">
+      <http:operation location="/ConsultaSimplesSERASA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaSERASA">
+      <http:operation location="/ConsultaDetalhadaSERASA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaPlusSERASA">
+      <http:operation location="/ConsultaDetalhadaPlusSERASA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaConcentreSERASA">
+      <http:operation location="/ConsultaConcentreSERASA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaChequeSERASA">
+      <http:operation location="/ConsultaChequeSERASA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefoneEnderecoSERASA">
+      <http:operation location="/ConsultaTelefoneEnderecoSERASA" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaCPFWebServiceHttpPost" type="tns:ConsultaCPFWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ConsultaSaldoCliente">
+      <http:operation location="/ConsultaSaldoCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistorico">
+      <http:operation location="/ConsultaHistorico" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaHistoricoPorToken">
+      <http:operation location="/ConsultaHistoricoPorToken" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSinteseCadastralSERASA">
+      <http:operation location="/ConsultaSinteseCadastralSERASA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaSimplesSERASA">
+      <http:operation location="/ConsultaSimplesSERASA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaSERASA">
+      <http:operation location="/ConsultaDetalhadaSERASA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaDetalhadaPlusSERASA">
+      <http:operation location="/ConsultaDetalhadaPlusSERASA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaConcentreSERASA">
+      <http:operation location="/ConsultaConcentreSERASA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaChequeSERASA">
+      <http:operation location="/ConsultaChequeSERASA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefoneEnderecoSERASA">
+      <http:operation location="/ConsultaTelefoneEnderecoSERASA" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultaCPFWebService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">WebServices para Consultas a &lt;strong&gt;SERASA&lt;/strong&gt;.&lt;br /&gt;&lt;br /&gt;Para utilizacao deste servico e necessario abrir uma conta no &lt;a href='http://www.consultacpf.com' target='_blank'&gt;http://www.consultacpf.com&lt;/a&gt;&lt;br /&gt;Para maiores informacoes sobre precos e integradores entre em &lt;a href='http://www.consultacpf.com/contato.aspx' target='_blank'&gt;contato&lt;/a&gt; com nosso departamento Comercial ou Tecnico&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;h3&gt;&lt;font color='#ff0000'&gt;ATENCAO, este ambiente é de PRODUCAO!&lt;/font&gt;&lt;/h3&gt;&lt;h3&gt;Consultas realizadas aqui serao descontadas de seu saldo.&lt;/h3&gt;&lt;br /&gt;</wsdl:documentation>
+    <wsdl:port name="ConsultaCPFWebServiceSoap" binding="tns:ConsultaCPFWebServiceSoap">
+      <soap:address location="http://www.consultacpf.com/webservices/consultacpf.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaCPFWebServiceSoap12" binding="tns:ConsultaCPFWebServiceSoap12">
+      <soap12:address location="http://www.consultacpf.com/webservices/consultacpf.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaCPFWebServiceHttpGet" binding="tns:ConsultaCPFWebServiceHttpGet">
+      <http:address location="http://www.consultacpf.com/webservices/consultacpf.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaCPFWebServiceHttpPost" binding="tns:ConsultaCPFWebServiceHttpPost">
+      <http:address location="http://www.consultacpf.com/webservices/consultacpf.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
